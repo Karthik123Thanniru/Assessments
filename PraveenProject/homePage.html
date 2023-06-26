@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Div Blocks</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .block {
+            width: 30%;
+            height: 100px;
+            background-color: green;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .block.clicked {
+            background-color: red;
+        }
+        .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"]
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter the details</h1>
+        <form id="loginForm">
+            <input type="text" id="vehicleNo" placeholder="Enter the vehicleNo">
+            <input type="text" id="phoneNumber" placeholder="Enter the Phonenumber">
+            <h3 id="timer"></h3>
+        </form>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="row">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

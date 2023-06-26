@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function() {
+    $("#loginForm").submit(function(event) {
+        event.preventDefault(); 
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        var existingUsers = localStorage.getItem("users");
+        var usersArray = [];
+
+        if (existingUsers) {
+            usersArray = JSON.parse(existingUsers);
+        }
+
+        var isAuthenticated = false;
+
+        usersArray.forEach(function(user) {
+            if (user.username === username && user.password === password) {
+                isAuthenticated = true;
+                return false;
+            }
+        });
+
+        if (isAuthenticated) {
+            window.location.href = "paymentPage.html";
+        } else {
+            usersArray.push({ username: username, password: password });
+            localStorage.setItem("users", JSON.stringify(usersArray));
+            window.location.href = "homePage.html";
+        }
+    });
+});
+
+
+    </script>
+    <style>
+        .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
