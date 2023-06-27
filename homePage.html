@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>HomePage</title>
+    <link rel="stylesheet" href="homePage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.moneyTransaction').click(function(e) {
+                e.preventDefault();
+                var page = $(this).attr('href');
+                window.location.href = page;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="topBar">
+        <p class="topBarText">Welcome User</p>
+        <a href="homePage.html" class="moneyTransaction"><p>Home</p></a>
+        <a href="Transactions.html" class="moneyTransaction"><p>Transactions</p></a>
+        <a href="creditPage.html" class="moneyTransaction"><p>Credit</p></a>
+        <a href="debitPageOne.html" class="moneyTransaction"><p>Deposit</p></a>
+        <a href="loginPage.html" class="moneyTransaction"><p>LogOut</p></a>
+    </div>
+    <br>
+    <div class="middleBar">
+        <h1 style="text-align: center;padding: 15%;">Welcome to our bank</h1>
+
+    </div>
+    <br>
+    <div class="bottomBar">
+<marquee><h1 style="color: white;">  Welcome to XYZ Bank! Secure and reliable banking services at your fingertips. Contact us at 1-800-123-4567 for assistance</h1></marquee>
+    </div>
+</body>
+</html>

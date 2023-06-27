@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debit</title>
+    <link rel="stylesheet" href="creditPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#creditForm').submit(function(e) {
+                e.preventDefault();
+                
+                var accountNumber = $('#accountNumber').val();
+                var ifscCode = $('#ifscCode').val();
+                var pin = $('#pin').val();
+                var rePin = $('#rePin').val();
+
+                if (accountNumber === '1234567890' && ifscCode === 'PNB2002' && pin === '1114' && pin === rePin) {
+                    window.location.href = 'debitPageTwo.html';
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="topBar">
+        <p class="topBarText">Welcome User</p>
+        <a href="homePage.html" class="moneyTransaction"><p>Home</p></a>
+        <a href="Transactions.html" class="moneyTransaction"><p>Transactions</p></a>
+        <a href="creditPage.html" class="moneyTransaction"><p>Credit</p></a>
+        <a href="debitPageOne.html" class="moneyTransaction"><p>Debit</p></a>
+        <a href="loginPage.html" class="moneyTransaction"><p>LogOut</p></a>
+    </div>
+    <br>
+    <div class="middleBar">
+        <form id="creditForm">
+            <label for="accountNumber">Account Number:</label>
+            <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter the account number" required>
+            <br><br>
+            <label for="ifscCode">IFSC Code:</label>
+            <input type="text" id="ifscCode" name="ifscCode" placeholder="Enter the IFSC code" required>
+            <br><br>
+            <label for="Pin">Pin:</label>
+            <input type="number" id="pin" name="pin" placeholder="Enter the pin" required>
+            <br><br>
+            <label for="RePin">Re-enter Pin:</label>
+            <input type="number" id="rePin" name="rePin" placeholder="Re-Enter the pin" required>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <br>
+    <div class="bottomBar"></div>
+</body>
+</html>

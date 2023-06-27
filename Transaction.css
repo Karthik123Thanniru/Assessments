@@ -1,0 +1,50 @@
+.topBar {
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between; /* Aligns items to the ends of the container */
+    align-items: center; /* Centers items vertically */
+}
+
+.topBarText {
+    color: aliceblue;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.moneyTransaction {
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.middleBar {
+    width: 100%;
+    height: 80%;
+    background-color: grey;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>LoginPage</title>
+        <link rel="stylesheet" href="loginPage.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#submit").on("click", function() {
+                    var userName = $("#userName").val();
+                    var passWord = $("#passWord").val();
+                    
+                    if ((userName === 'userOne' && passWord === 'userOne') || (userName === 'userTwo' && passWord === 'userTwo')) {
+                        window.location.href = "homePage.html";
+                    } else {
+                        alert('Invalid username or password. Please try again.');
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="loginPage">
+            <diV class="form">
+ 
+            <h1>Login</h1>
+            <input type="text" id="userName" placeholder="Username" required>
+            <br>
+            <br>
+            <input type="password" id="passWord" placeholder="Password" required>
+            <br>
+            <br>
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </diV>
+    </body>
+</html>

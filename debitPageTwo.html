@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debit</title>
+    <link rel="stylesheet" href="creditPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    var form = $('#debitForm');
+    form.submit(function(e) {
+        e.preventDefault();
+        var accountNumber = $('#accountNumber').val();
+        var accountHolderName = $('#accountHolderName').val();
+        var ifscCode = $('#ifscCode').val();
+        var amount = Number($('#amount').val());
+        var transactions = JSON.parse(localStorage.getItem('transactions'));
+        var previousTotalAmount = 0;
+        if (transactions && transactions.length > 0) {
+            var lastTransaction = transactions[transactions.length - 1];
+            if (lastTransaction.hasOwnProperty('totalAmount')) {
+                previousTotalAmount = parseFloat(lastTransaction.totalAmount);
+            }
+        }
+
+        var totalAmount = previousTotalAmount - amount;
+
+        if (accountNumber === '1234567890' && accountHolderName === 'Thanniru Karthik' && ifscCode === 'PNB2002') {
+            var accountDetails = {
+                accountNumber: accountNumber,
+                accountHolderName: accountHolderName,
+                ifscCode: ifscCode,
+                amount:'-'+ amount,
+                totalAmount: totalAmount
+            };
+            console.log(JSON.stringify(accountDetails));
+            var existingTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            existingTransactions.push(accountDetails);
+            localStorage.setItem('transactions', JSON.stringify(existingTransactions));
+            form[0].reset();
+            alert('Account details stored in local storage.');
+        } else {
+            alert('Invalid account details. Please try again.');
+        }
+    });
+});
+
+    </script>
+</head>
+<body>
+    <div class="topBar">
+        <p class="topBarText">Welcome User</p>
+        <a href="homePage.html" class="moneyTransaction"><p>Home</p></a>
+        <a href="Transactions.html" class="moneyTransaction"><p>Transactions</p></a>
+        <a href="creditPage.html" class="moneyTransaction"><p>Credit</p></a>
+        <a href="debitPageOne.html" class="moneyTransaction"><p>Debit</p></a>
+        <a href="loginPage.html" class="moneyTransaction"><p>LogOut</p></a>
+    </div>
+    <br>
+    <div class="middleBar">
+        <form id="debitForm">
+            <label for="accountNumber">Account Number:</label>
+            <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter the account number" required>
+            <br><br>
+            <label for="accountHolderName">Account Holder Name:</label>
+            <input type="text" id="accountHolderName" name="accountHolderName" placeholder="Enter the account holder name" required>
+            <br><br>
+            <label for="ifscCode">IFSC Code:</label>
+            <input type="text" id="ifscCode" name="ifscCode" placeholder="Enter the IFSC code" required>
+            <br><br>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter the amount to Debit" required>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <br>
+    <div class="bottomBar"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transactions</title>
+    <link rel="stylesheet" href="Transaction.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+             
+            var transactions = JSON.parse(localStorage.getItem('transactions'));
+
+            if (transactions && transactions.length > 0) {
+                var table = $('<table>');
+                var fields = Object.keys(transactions[0]);
+                var thead = $('<thead>');
+                var tbody = $('<tbody>');
+                var headerRow = $('<tr>');
+                for (var i = 0; i < fields.length; i++) {
+                    headerRow.append($('<th>').text(fields[i]));
+                }
+                thead.append(headerRow);
+
+                for (var j = 0; j < transactions.length; j++) {
+                    var dataRow = $('<tr>');
+                    for (var k = 0; k < fields.length; k++) {
+                        dataRow.append($('<td>').text(transactions[j][fields[k]]));
+                    }
+                    tbody.append(dataRow);
+                }
+
+                table.append(thead, tbody);
+                $('#accountDetailsTable').append(table);
+            }
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="topBar">
+        <p class="topBarText">Welcome User</p>
+        <a href="homePage.html" class="moneyTransaction"><p>Home</p></a>
+        <a href="Transactions.html" class="moneyTransaction"><p>Transactions</p></a>
+        <a href="creditPage.html" class="moneyTransaction"><p>Credit</p></a>
+        <a href="debitPageOne.html" class="moneyTransaction"><p>Debit</p></a>
+        <a href="loginPage.html" class="moneyTransaction"><p>LogOut</p></a>
+    </div>
+    <br>
+  
+    <div class="middleBar">
+        <h2>Account Details</h2>
+        <div id="accountDetailsTable"></div>
+    </div>
+    <br>
+    <div class="bottomBar"></div>
+</body>
+</html>
