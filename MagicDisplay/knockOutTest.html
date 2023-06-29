@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>knockoutjs</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+        <script>
+            function overFlow() {
+                var self = this;
+                self.username = ko.observable("");
+                self.password = ko.observable("");
+                ko.computed(function() {
+                    console.log(self.username() + " " + self.password());
+                })
+                self.numberOfClicks=ko.observable(0);
+            self.clickedMe=function()
+            {
+                self.numberOfClicks(self.numberOfClicks()+1)
+            }
+            self.reset=function()
+            {
+                self.numberOfClicks(0)
+            }
+          this.tooManyClicks=ko.computed(function()
+          {
+            return this.numberOfClicks()>=3
+          },this)
+            }
+          
+            function initialize() {
+                ko.applyBindings(new overFlow());
+            }
+
+            
+            document.addEventListener("DOMContentLoaded", initialize);
+        </script>
+    </head>
+    <body>
+        <input type="text" data-bind="value: username" placeholder="username"/>
+        <input type="password" data-bind="value: password" placeholder="password"/>
+    <div>your clicked<span data-bind="text:numberOfClicks,"></span>me</div>
+    <button data-bind="click: clickedMe,disable:tooManyClicks">click me</button>
+    
+    <div data-bind="visible:tooManyClicks">
+       Too many clicks has be clicked 
+       <button data-bind="click:resetClick">reset</button>
+    </div>
+</body>
+</html>

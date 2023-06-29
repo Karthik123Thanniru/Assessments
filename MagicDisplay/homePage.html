@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>HomePage</title>
+    <link rel="stylesheet" href="homePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.blockContainer .blocksTwo').on('click', function() {
+                $('.lightHouse .lightDown .lightDownTwo').css('background-image', "url('/home/karthik/Documents/ziffity/MagicDisplay/lightHouse.jpeg')");
+            });
+            $('.blockContainer .blocksThree').on('click', function() {
+                $('.lightHouse .lightDown .lightDownThree').css('background-image', "url('/home/karthik/Documents/ziffity/MagicDisplay/lightHouse.jpeg')");
+            });
+            function OverlayViewModel() {
+                var self = this;
+                self.firstName = ko.observable("Hello");
+                self.lastName = ko.observable("mypass");
+                self.showOverlay = ko.observable(false);
+                
+                self.showOverlay.subscribe(function(newValue) {
+                    if (newValue) {
+                        document.getElementById('overlay').style.display = "flex";
+                    } else {
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+                });
+                
+                self.hideOverlay = function() {
+                    self.showOverlay(false);
+                    $('.lightHouse .lightDown .lightDownOne').css('background-image', "url('/home/karthik/Documents/ziffity/MagicDisplay/lightHouse.jpeg')");
+                };
+            }
+
+            var viewModel = new OverlayViewModel();
+            ko.applyBindings(viewModel);
+        });
+    </script>
+</head>
+<body>
+    <div class="lightHouse">
+        <div class="lightTop">
+            <div class="lightUpOne"></div>
+            <div class="lightUpTwo"></div>
+            <div class="lightUpThree"></div>
+        </div>
+        <div class="lightDown">
+            <div class="lightDownOne"></div>
+            <div class="lightDownTwo"></div>
+            <div class="lightDownThree"></div>
+        </div>
+    </div>
+    <div class="blockContainer">
+        <div class="blocksOne">
+            <div id="overlay" data-bind="visible: showOverlay">
+                <div class="overlay-content">
+                    <form class="login-form">
+                        <h2>Enter The Data</h2>
+                        <input type="text" data-bind="value: firstName" placeholder="firstName" required>
+                        <input type="text" data-bind="value: lastName" placeholder="lastName" required>
+                        <button type="submit" data-bind="click: hideOverlay">Login</button>
+                        <div class="error-message"></div>
+                    </form>
+                </div>
+            </div>
+            <button data-bind="click: showOverlay" style="border: none;background-color: white;cursor: pointer;">
+                <i class="fa fa-bug"></i>
+            </button>
+        </div>
+        <div class="blocksTwo">
+            
+            <button style="border: none;background-color: white;cursor: pointer;">
+                <i class="fa fa-bug"></i>
+            </button>
+        </div>
+        <div class="blocksThree">
+            <i class="fa fa-bug"></i>
+        </div>
+    </div>
+    <div class="humanNoid">
+        <div class="left"></div>
+        <div class="Middle"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
