@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title>HomePage</title>
+    <link rel="stylesheet" href="homePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.blockContainer .blocksTwo').on('click', function() {
+                $('.lightHouse .lightDown .lightDownTwo').css('background-image', "url('/home/z0407@ad.ziffity.com/Downloads/lightHouse.jpeg')");
+            });
+            $('.blockContainer .blocksThree').on('click', function() {
+                $('.lightHouse .lightDown .lightDownThree').css('background-image', "url('/home/z0407@ad.ziffity.com/Downloads/lightHouse.jpeg')");
+            });
+            function OverlayViewModel() {
+                var self = this;
+                self.firstName = ko.observable("");
+                self.lastName = ko.observable("");
+                self.showOverlay = ko.observable(false);
+                self.simpleArray=ko.observableArray([""]);
+                self.showOverlay.subscribe(function(newValue) {
+                    if (newValue) {
+                        document.getElementById('overlay').style.display = "flex";
+                    } else {
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+                });
+                self.AddToTable = function() {
+                    if (self.firstName() !== "" && self.lastName() !== "") {
+                        self.simpleArray.push(self.firstName() + " " + self.lastName());
+          
+                        console.log(self.simpleArray());
+                    } else {
+                        alert("Please fill in both first name and last name.");
+                    }
+                };
+                self.hideOverlay = function() {
+                    if(self.firstName()!="" && self.lastName()!="")
+                    {
+               
+                    self.showOverlay(false);
+                    $('.lightHouse .lightDown .lightDownOne').css('background-image', "url('/home/z0407@ad.ziffity.com/Downloads/lightHouse.jpeg')");
+                    }
+                    else
+                    {
+                        alert("please fill")
+                    }
+                };
+               
+            }
+
+            var viewModel = new OverlayViewModel();
+            ko.applyBindings(viewModel);
+        });
+    </script>
+</head>
+<body>
+    <div class="lightHouse">
+        <div class="lightTop">
+            <div class="lightUpOne"></div>
+            <div class="lightUpTwo"></div>
+            <div class="lightUpThree"></div>
+        </div>
+        <div class="lightDown">
+            <div class="lightDownOne"></div>
+            <div class="lightDownTwo"></div>
+            <div class="lightDownThree"></div>
+        </div>
+    </div>
+    <div class="blockContainer">
+        <div class="blocksOne">
+            <div id="overlay" data-bind="visible: showOverlay">
+                <div class="overlay-content">
+                    <form class="login-form">
+                        <h2>Enter The Data</h2>
+                        <input type="text" data-bind="value:firstName,valueUpdate: 'afterkeydown'" placeholder="firstName" required>
+                        <input type="text" data-bind="value: lastName,valueUpdate: 'afterkeydown'" placeholder="lastName" required>
+                        <button data-bind="click:AddToTable,enable:firstName().length>0 && lastName().length>0">AddToTable</button>
+                        <p style="color:rgb(255, 162, 0)">yor are entering this to database</p>
+                        <strong>1.</strong><strong data-bind="text:firstName"></strong><br>
+                        <strong>2.</strong> <strong data-bind="text:lastName"></strong>
+                 
+                        <table class="tb">
+                            <thead style="background: navy; color: white;">
+                                <tr>
+                                    <th>
+                                firstName
+                            </th>
+                                <th>
+                                lastName
+                            </th>
+                                 </tr>
+                                </thead>
+                        <tbody data-bind="foreach: simpleArray">
+                            <tr>
+                                <td data-bind="text: $data.split(' ')[0]"></td>
+                                <td data-bind="text: $data.split(' ')[1]"></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <button type="submit" data-bind="click: hideOverlay">Submit</button>
+                        <div class="error-message"></div>
+                    </form>
+                </div>
+            </div>
+            <button data-bind="click: showOverlay" style="border: none;background-color: white;cursor: pointer;">
+                <i class="fa fa-bug"></i>
+            </button>
+        </div>
+        <div class="blocksTwo">
+            
+            <button style="border: none;background-color: white;cursor: pointer;">
+                <i class="fa fa-bug"></i>
+            </button>
+        </div>
+        <div class="blocksThree">
+            <i class="fa fa-bug"></i>
+        </div>
+    </div>
+    <div class="humanNoid">
+        <div class="left"></div>
+        <div class="Middle"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
