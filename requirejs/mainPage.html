@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Category List</title>
+  <link rel="stylesheet" href="mainpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script data-main="firstScript" src="require.js"> </script>
+</head>
+
+<body>
+  <div class="topBanner">
+    <h1 style="color:white">Category Cables</h1>
+    <table>
+      <tr>
+        <td><select data-bind="options: optionPrice, value: selectedOptionValueOne" style="cursor: pointer;"></select></td>
+        <td><select data-bind="options: optionSort, value: selectedOptionValueTwo" style="cursor: pointer;"></select></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div class="productBlocks" data-bind="foreach:filteredProductList">
+    <div class="productBlock">
+      <div>
+        <img data-bind="attr: { src: image },click: function() { $root.contentOpener($index()) }" alt="Product Image" style="width:80%;height:100%;cursor: pointer;">
+    </div>
+      <div>
+      <h1 data-bind="text: 'Product '+id"></h1>
+      <br>
+      <h2 data-bind="text: 'SKU: ' + sku"></h2>
+      <br>
+      <input type="checkbox"><label>Compare</label><a href="">+ add to wishlist</a>
+    </div>
+    <div>
+      <h2>Qty ft</h2>
+      <p style="border: 2px solid black;">
+        <span class="plus" data-bind="click:$root.feetIncrease" style="font-size: 40px; padding-left: 20px; padding-right: 24px; background-color: gray; border-style: none solid none none;border:0.5px solid gray">+</span>
+        <span data-bind="text:$root.feetValue" style="font-size: 40px; padding: 20px;">  </span>
+        <span class="minus" data-bind="click:$root.feetDecrease" style="font-size: 40px; padding-left: 23px; padding-right: 24px; background-color: grey; border-style: none none none solid;border:0.5px solid gray"> - </span>
+    </p>
+    </div>
+      <div>
+      <p data-bind="text: '$' + price.toFixed(2)+'/ft'" style="color:red;font-size: 22px;">/</p>
+      <br>
+      <br>
+      <p data-bind="text: '$' + quantity+'/1000ft'" style="color:rgb(119, 216, 255);font-size: 22px;"></p>
+    </div>
+    </div>
+    <div class="btns">
+      <button>Delivery</button>
+      <br>
+      <br>
+      <button>PickUp</button>
+    </div>
+  </div>
+
+  <!-- <div class="productBlocks" data-bind="foreach:filteredProductList">
+    <div class="productBlock">
+      <div >
+        <img data-bind="attr: { src: image }" alt="Product Image" style="width:80%;height:100%">
+
+    
+    </div>
+      <div>
+      <h1 data-bind="text: 'Product '+id"></h1>
+      <br>
+      <h2 data-bind="text: 'SKU: ' + sku"></h2>
+      <br>
+      <input type="checkbox"><label>Compare</label><a href="">+ add to wishlist</a>
+    </div>
+      <div>
+      <p data-bind="text: '$' + price.toFixed(2)+'/ft'" style="color:red;">/</p>
+      <br>
+      <br>
+      <p data-bind="text: '$' + quantity+'/1000ft'" style="color:rgb(119, 216, 255);"></p>
+    </div>
+    </div>
+    <div class="btns">
+      <button>Delivery</button>
+      <br>
+      <br>
+      <button>PickUp</button>
+    </div>
+  </div> -->
+<div class="footer">
+  <!-- <i class="fas fa-chevron-right" style="font-size:20px;">&rightarrow;</i> -->
+ <ul data-bind="foreach:numbers">
+  <!-- <li data-bind="text:$data,click:$root.performNumbers"></li> -->
+  <li data-bind="text: $data, click: $root.performNumbers, css: { 'highlight': $data === $root.selectedNumber() }"></li>
+ </ul>
+ <!-- <i class="fas fa-chevron-left" style="font-size:20px;">&leftarrow;</i> -->
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+body
+{
+    background-color: grey;
+}
+
+.content
+{
+    width:50%;
+    height: 50%;
+    background-color: white;
+    margin-top: 10%;
+    margin-left: 20%;
+    display: flex;
+    border-radius: 16px;
+}
+
+.productBlock
+{
+    display: flex;
+    
+}
+.upperBlock
+{
+    display: flex;
+  
+}
+.upperTwo
+{
+    padding:40px 80px;
+}
+.upperBlock>div
+{
+    margin-left: 30px;
+}
+.productBlock>div{
+    width: 50%;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: rgb(119, 176, 255);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .lastblock button
+  {
+    margin-left: 40px;
+  }
+  .lastblock
+  {
+    display: flex;
+  }
