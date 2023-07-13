@@ -1,0 +1,190 @@
+.topBanner {
+  width: 100%;
+  height: 20%;
+  background-color: rgb(0, 0, 116);
+  align-items: center;
+  text-align: center;
+}
+
+table {
+  justify-content: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+td {
+  padding: 10px;
+}
+
+select {
+  width: 130px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.belowBanner {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.productBlocks {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 40px;
+}
+
+.productBlock {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding: 10px; 
+  width: 95%; 
+  border-style: solid solid none solid;
+}
+
+.productBlock>div {
+  margin-left: 150px;
+}
+.productBlock img {
+  width: 80%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.productBlock h1,
+.productBlock h2 {
+  margin: 0;
+}
+
+.productBlock h2:nth-child(3) {
+  margin-top: 20px;
+}
+
+/* .productBlock p {
+  border: 2px solid black;
+} */
+
+.productBlock .plus {
+  font-size: 40px;
+  padding-left: 20px;
+  padding-right: 24px;
+  background-color: gray;
+  border-style: none solid none none;
+  border: 0.5px solid gray;
+}
+
+.productBlock .minus {
+  font-size: 40px;
+  padding-left: 23px;
+  padding-right: 24px;
+  background-color: grey;
+  border-style: none none none solid;
+  border: 0.5px solid gray;
+}
+.productBlock .feetValue
+{
+font-size: 40px;
+padding-left: 40px;
+padding-right: 24px;
+}
+
+.productBlock > div:last-child p:first-child {
+  color: red;
+  font-size: 22px;
+}
+
+.productBlock > div:last-child p:last-child {
+  color: rgb(119, 216, 255);
+  font-size: 22px;
+}
+
+.btns button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(119, 176, 255);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btns button:hover {
+  background-color: #45a049;
+}
+
+.btns {
+  padding: 10px 19px;
+  width: 94%;
+  margin-bottom: 6px;
+  border-style: none solid solid solid;
+}
+
+.btns button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(119, 176, 255);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btns button:hover {
+  background-color: #45a049;
+}
+
+.productBlock img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.productBlock h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.productBlock p {
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding: 10px; 
+  height: 30px; 
+  border-style: solid solid solid solid;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 40%;
+}
+
+ul li {
+  list-style: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.plus {
+  cursor: pointer;
+}
+
+.minus {
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: yellow;
+}

@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Conatiner Display</title>
+    <link rel="stylesheet" href="productPageStyle.css">
+    <script data-main="productPageScript" src="require.js"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="productBlock">
+            <div>
+                <img data-bind="attr: { src: image }" alt="Product Image" style="width:80%;height:100%">
+            </div>
+            <div>
+                <div class="upperBlock">
+                    <div class="upperOne">
+                        <h1 data-bind="text: 'Product ' + Product">Product</h1>
+                        <h3 data-bind="text: 'SKU: ' + SKU">Sku</h3>
+                    </div>
+                    <div class="upperTwo">
+                        <p data-bind="text: '$' + price.toFixed(2) + '/ft'"></p>
+                        <p data-bind="text: '$' + quantity + '/1000ft'"></p>
+                    </div>                    
+                </div>
+                <div class="middleBlock">
+                    <p>A battery is a source of electric power consisting of one or more electrochemical cells with external connections[1] for powering electrical devices. When a battery is supplying power, its positive terminal is the cathode and its negative terminal is the anode.</p>
+                    <ul>
+                        <li>
+                            hii
+                        </li>
+                        <li>
+                            heello
+                        </li>
+                        <li>
+                            hey
+                        </li>
+                    </ul>
+                </div>
+                <div class="lastblock">
+                    <p>
+                        <span>Qty ft:</span>
+                        <span>+</span>
+                        <span>1000</span>
+                        <span>-</span>
+                    </p>
+                    <button>
+                        Delivery
+                    </button>
+                    <button>
+                        Pick Up
+                    </button>
+                </div>                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
