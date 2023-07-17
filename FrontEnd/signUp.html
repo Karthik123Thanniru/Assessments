@@ -1,0 +1,179 @@
+<html>
+<head>
+    <title>signUP</title>
+    <style>
+        body {
+            background-color: white;
+            transition: background-color 0.5s ease;
+            font-family: Arial, sans-serif;
+        }
+    
+        body.dark {
+            background-color: black;
+        }
+    
+        form {
+            margin: 220px auto;
+            width: 300px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    
+        input {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+    
+        input:focus {
+            outline: none;
+            border-color: #666;
+        }
+    
+        input.dark {
+            color: white;
+            background-color: #333;
+            border-color: #666;
+        }
+    
+        input.dark:focus {
+            border-color: #999;
+        }
+    
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+        }
+    </style>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("input").on("focus", function() {
+                $("body").addClass("dark");
+                $("input").addClass("dark");
+            });
+
+            $("input").on("blur", function() {
+                $("body").removeClass("dark");
+                $("input").removeClass("dark");
+            });
+
+            $("form").submit(function(event) {
+                event.preventDefault();
+                $(".error").text("");
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var newPassword = $("#newPassword").val();
+                var isValid = true;     
+                if (username.trim() === "") {
+                    $("#username-error").text("Username is required.");
+                    isValid = false;
+                }
+                
+                if (password.trim() === "") {
+                    $("#password-error").text("Password is required.");
+                    isValid = false;
+                }
+                
+                if (newPassword.trim() === "") {
+                    $("#newPassword-error").text("New Password is required.");
+                    isValid = false;
+                }
+                var usernameRegex = /^[a-zA-Z0-9]+$/;
+        if (username.trim() === "") {
+            $("#username-error").text("Username is required.");
+            isValid = false;
+        } else if (!usernameRegex.test(username)) {
+            $("#username-error").text("Username must contain only letters and numbers.");
+            isValid = false;
+        }
+        if (password.trim() === "") {
+            $("#password-error").text("Password is required.");
+            isValid = false;
+        } else if (password.length < 6) {
+            $("#password-error").text("Password must be at least 6 characters long.");
+            isValid = false;
+        }
+        if (newPassword.trim() === "") {
+            $("#newPassword-error").text("New Password is required.");
+            isValid = false;
+        } else if (newPassword.length < 6) {
+            $("#newPassword-error").text("New Password must be at least 6 characters long.");
+            isValid = false;
+        }
+        
+                if (isValid) {
+                    $.ajax({
+                        url: "http://localhost/projects/registeredDetails.php",
+                        type: "POST",
+                        data: {
+                            username: username,
+                            password: password,
+                            newPassword: newPassword
+                        },
+                        success: function(response) {
+                            if (response === "exists") {
+                                $("#error").text("Username already exists. Please select a different username.");
+                            } else if (response === "success") {
+                                $("#error").text("");
+                                console.log("New record created successfully");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                        
+                    });
+                }
+                $("#username").val("");
+                $("#password").val("");
+                $("#newPassword").val("");
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <h1>SIGNUP</h1>
+        <input type="text" id="username" placeholder="Username">
+        <p id="username-error" class="error"></p>
+        <input type="password" id="password" placeholder="Password">
+        <p id="password-error" class="error"></p>
+        <input type="password" id="newPassword" placeholder="New Password">
+        <p id="newPassword-error" class="error"></p>
+        <input type="submit" value="SIGNUP">
+        <p id="error" class="error"></p>
+    </form>
+</body>
+</html>
