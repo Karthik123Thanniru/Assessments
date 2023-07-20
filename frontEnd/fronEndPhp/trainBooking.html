@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        #bookingForm {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #bookingDetailsContainer {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .train p {
+            margin: 5px 0;
+        }
+
+        #totalAmount {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .person-fields {
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Booking Details</h1>
+    <div id="bookingDetailsContainer"></div>
+    <h2>Enter Number of Persons and Personal Details</h2>
+    <form id="bookingForm">
+        <label for="numberOfPersons">Number of Persons:</label>
+        <input type="number" id="numberOfPersons" name="numberOfPersons" min="1" required><br>
+        <div id="personDetailsContainer">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var trainNumber = getTrainNumberFromURL();
+            if (trainNumber) {
+                displayBookingDetails(trainNumber);
+            }
+            $("#bookingForm").submit(function(event) {
+                event.preventDefault();
+                var numberOfPersons = parseInt($("#numberOfPersons").val());
+                var totalAmount = numberOfPersons * parseFloat($("#amount").text());
+                $("#totalAmount").text("Total Amount: $" + totalAmount.toFixed(2));
+            });
+            $("#numberOfPersons").on("input", function() {
+                var numberOfPersons = parseInt($(this).val());
+                $("#personDetailsContainer").empty();
+
+                for (var i = 1; i <= numberOfPersons; i++) {
+                    var personFields = $("<div></div>").addClass("person-fields");
+                    personFields.append($("<label>Name:</label>"));
+                    personFields.append($("<input type='text' name='name_" + i + "' required><br>"));
+                    personFields.append($("<label>Age:</label>"));
+                    personFields.append($("<input type='number' name='age_" + i + "' min='1' required><br>"));
+                    personFields.append($("<label>Contact Number:</label>"));
+                    personFields.append($("<input type='tel' name='contactNumber_" + i + "' pattern='[0-9]{10}' required><br><br>"));
+
+                    $("#personDetailsContainer").append(personFields);
+                }
+            });
+        });
+
+        function getTrainNumberFromURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var trainNumber = urlParams.get("train_no");
+            return trainNumber;
+        }
+
+        function displayBookingDetails(trainNumber) {
+            $.ajax({
+                url: "http://localhost/test/practiceTest/trainBooking.php",
+                type: "GET",
+                data: { train_no: trainNumber },
+                dataType: "json",
+                success: function(response) {
+                    if (response && response.length > 0) {
+                        var container = $("#bookingDetailsContainer");
+                        container.empty();
+                        var trainDiv = $("<div></div>").addClass("train");
+                        trainDiv.append($("<p></p>").text("Bus Number: " + response[0].train_no));
+                        trainDiv.append($("<p></p>").text("Amount Per Person: $" + response[0].amount));
+                        container.append(trainDiv);
+                        container.append($("<p id='amount' style='display:none'>" + response[0].amount + "</p>"));
+                    } else {
+                        console.log("No data found for the given bus number.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", error);
+                }
+            });
+        }
+    </script>
+    <div id="totalAmount"></div>
+</body>
+</html>
