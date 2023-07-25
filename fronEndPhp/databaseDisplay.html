@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://localhost/test/practiceTest/dataDisplay.php",
+                dataType: "json",
+                success: function(data) {
+                    var table = $("<table>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
+                    var headerRow = $("<tr>");
+                        headerRow.append($("<th>").text("ID"))
+                    headerRow.append($("<th>").text("Username"));
+                    headerRow.append($("<th>").text("Password"));
+                    headerRow.append($("<th>").text("New Password"));
+                    thead.append(headerRow);
+
+
+                    $.each(data, function(index, row) {
+                        var tableRow = $("<tr>");
+                            tableRow.append($("<td>").text(row.ID));
+                        tableRow.append($("<td>").text(row.username));
+                        tableRow.append($("<td>").text(row.pass_word));
+                        tableRow.append($("<td>").text(row.new_password));
+                        tbody.append(tableRow);
+                    });
+                    table.append(thead);
+                    table.append(tbody);
+                    $("#table-container").append(table);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="table-container"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+    margin: 0;
+}
+
+.headDisplay h1 {
+    color: white;
+    font-size: 40px;
+    font-family: 'Epilogue', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.imageDisplay {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70vh;
+}
+
+.imageDisplay>div {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.imageDisplay>div img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.imageDisplay>div:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}

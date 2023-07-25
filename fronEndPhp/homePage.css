@@ -1,0 +1,144 @@
+body{
+    
+    background-color: black;
+}
+.titleBar
+{
+    width:100%;
+    height:10%;
+    background-color: white;
+    border-radius: 40px;
+    display: flex;
+}
+.titleBar img{
+    width: 8%;
+    height: 100%;
+}
+.middleTopBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    background-image: url('/home/z0407@ad.ziffity.com/Downloads/Artistic Psychedelic HD Wallpaper.jpeg');
+}
+
+.middleTopBar h1 {
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    padding-top: 120px;
+    margin-bottom: 20px;
+}
+
+.middleTopBar p {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    margin-top: -50px;
+    margin-bottom: 20px;
+}
+
+.middleTopBar button {
+    background-color: orange;
+    color: #000;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.middleTopBar button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.middleTopBar button:first-child {
+    margin-top: 40px;
+}
+
+.middleTopBar button:last-child {
+    margin-bottom: 40px;
+}
+
+.middleDownBar
+{
+    width:100%;
+    background-color: rgb(47, 46, 46);
+    height: 60%;
+    display: flex;
+}
+
+.middleDownBar .midLeft{
+    width: 50%;
+    height: 100%;
+}
+.middleDownBar .midRight{
+    width: 50%;
+    height: 100%;
+ 
+}
+.middleDownBar .midLeft h1{
+    text-align: left;
+    font-size: 35px;
+    color:white;
+    padding-left: 100px ;
+    padding-top: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.middleDownBar .midLeft p{
+    text-align: left;
+    font-size: 20px;
+    color:white;
+    padding-left: 100px ;
+    padding-top: 40px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    word-spacing: 4px;
+
+}
+
+.middleDownBar .midRight img {
+    border-radius: 160px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    padding: 100px; 
+    box-sizing: border-box; 
+}
+.bottomBar
+{
+    width:100%;
+    height: 80%;
+    background-color: white
+}
+.bottomBar{
+display: flex;
+
+}
+.bottomBar>div{
+
+    background-color: black;
+    width:30%;
+    height: 90%;
+    margin-left: 60px;
+    margin-top:60px;
+    margin-right: 100px;
+    border-radius: 40px;
+}
+.bottomBar>div img{
+    width:100%;
+    height: 50%;
+}
+.bottomBar>div h1{
+    padding: 20px;
+    font-family: 'Epilogue', sans-serif;
+}
+.bottomBar>div p{
+    padding: 20px;
+    font-family: 'Epilogue', sans-serif;
+    color:white;
+   
+}
