@@ -20,10 +20,8 @@ class RegisteredDetailsAPI
                 $data = $result->fetch_assoc();
                 $hashedPassword = $data['pass_word'];
                 if (password_verify($password, $hashedPassword)) {
-                    // Passwords match, user is authenticated
                     echo json_encode(array("status" => "success"));
                 } else {
-                    // Passwords don't match
                     echo json_encode(array("status" => "error", "message" => "Username and password do not match."));
                 }
             } else {
