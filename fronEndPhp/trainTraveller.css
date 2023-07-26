@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    color: #333;
+}
+
+.train {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.train p {
+    margin: 0;
+    
+}
+
+.train p:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.train p:not(:first-child) {
+    margin-top: 10px;
+}
+
+.train p span {
+    font-weight: bold;
+}
+
+.train button {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 20px; 
+    border: none;
+    cursor: pointer; 
+    border-radius: 4px; 
+}
+
+.train button:hover {
+    background-color: #45a049; 
+}
