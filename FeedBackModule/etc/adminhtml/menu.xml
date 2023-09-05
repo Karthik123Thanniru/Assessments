@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CustomFeedBack_FeedBackModule::FeedBack" title="FeedBack" translate="title" module="CustomFeedBack_FeedBackModule" parent="Magento_Customer::customer" sortOrder="50" dependsOnModule="CustomFeedBack_FeedBackModule" resource="CustomFeedBack_FeedBackModule::FeedBack"/>
+        <add id="CustomFeedBack_FeedBackModule::feedbacks" title="FeedBacks" translate="title" module="CustomFeedBack_FeedBackModule" parent="CustomFeedBack_FeedBackModule::FeedBack" action="adminfeedback/post/index" resource="CustomFeedBack_FeedBackModule::FeedBack"/>
+    </menu>
+</config>
