@@ -1,0 +1,27 @@
+FeedBackModule
+ETA-3days
+
+
+1.Create a footer link with name FeedBackModule
+-add di.xml file with referencecontainer- footer
+2.When we click on the footer should navigate to the form 
+-form will get the data from session if logged in
+-form will have the below fields
+        1. Customer first name. 2. last name, 3. email, 4. Comment text area
+3.once submit will send for review to mail to the admin
+-using mailtrap we can see weather the mail is sent or not using smtp
+4.In admin dashboard under the customer we will create a tab with the name feedback
+-in the magento_customer we will configure menu and add a new tab with name feedback
+5. when we click on that we will create a grid ui component will display the data in the grid
+-with actions,like filter,search pagination
+6.we will send data to the ui component using datasource
+-this will done in the etc in di.xml where the table connection and datasource to the table
+7.In ui component we will get the data and display the data in the grid and add an action button at the one coulmn of grid
+-when cliked on will navigate to new layout where there will be getting of data from the database where the user clicked on particular id
+8.show in the form and at last there will be two buttons accept and reject 
+when clicking on accept in the database there is one row with values
+intital-validating
+accept-validated
+reject-rejected
+when we click on accept the validating value will be changed to the validated and like vice versa for the reject
+9.In the front end we will show the data which were only validation value validated.
