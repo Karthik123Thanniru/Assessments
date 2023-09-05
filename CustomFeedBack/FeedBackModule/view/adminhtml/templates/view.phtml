@@ -1,0 +1,61 @@
+<?php
+$data = $block->getDbData();
+if ($data) {
+    $firstname = $data->getfirstname();
+    $lastname = $data->getlastname();
+    $comment = $data->getcomment();
+    ?>
+    <div class="container">
+        <h2 class="name">
+            <?= $firstname . ' ' . $lastname ?>
+        </h2>
+        <div class="comment">
+            <h3>
+                <?= $comment ?>
+            </h3>
+        </div>
+        <a href="<?= $block->getUrl('adminfeedback/post/validation', ['id' => $data->getFeedbackId()]) ?>"
+            class="my-link">Accept</a>
+        <a href="<?= $block->getUrl('adminfeedback/post/rejection', ['id' => $data->getFeedbackId()]) ?>"
+            class="my-link">Reject</a>
+    </div>
+    <?php
+} else {
+    echo "Data not found or not loaded correctly.";
+}
+?>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        text-align: center;
+    }
+
+    .name {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .comment {
+        margin-top: 10px;
+    }
+
+    .my-link {
+        margin-top: 10px;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .my-link:hover {
+        background-color: #0056b3;
+    }
+</style>
