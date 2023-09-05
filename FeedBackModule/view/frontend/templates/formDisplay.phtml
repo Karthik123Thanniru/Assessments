@@ -1,0 +1,42 @@
+<?php
+$customerSession = $this->getData('customer_session');
+
+if ($customerSession && $customerSession->isLoggedIn()) {
+    $customerId = $customerSession->getCustomerId();
+    $customer = $customerSession->getCustomer();
+    $firstname = $customer->getFirstname();
+    $lastname=$customer->getLastname();
+    $customerEmail = $customer->getEmail();
+}
+?>
+<form action="<?= $block->getUrl('feedbackForm/index/save') ?>" method="post" id="feedback-form" data-mage-init='{"validation":{}}'>
+    <div class="field">
+        <label for="firstname" class="label"><span><?= __('First Name') ?></span></label>
+        <div class="control">
+            <input type="text" name="firstname" id="firstname" class="input-text" data-validate="{required:true}" value="<?= isset($firstname) ?$firstname : '' ?>" />
+        </div>
+    </div>
+    <div class="field">
+        <label for="lastname" class="label"><span><?= __('Last Name') ?></span></label>
+        <div class="control">
+            <input type="text" name="lastname" id="lastname" class="input-text" data-validate="{required:true}" value="<?= isset($lastname) ? $lastname : '' ?>" />
+        </div>
+    </div>
+    <div class="field">
+        <label for="email" class="label"><span><?= __('Email') ?></span></label>
+        <div class="control">
+            <input type="email" name="email" id="email" class="input-text" data-validate="{required:true, 'validate-email':true}" value="<?= isset($customerEmail) ? $customerEmail : '' ?>" />
+        </div>
+    </div>
+    <div class="field">
+        <label for="comment" class="label"><span><?= __('Comment') ?></span></label>
+        <div class="control">
+            <textarea name="comment" id="comment" class="input-text" data-validate="{required:true}"></textarea>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary"><span><?= __('Submit') ?></span></button>
+        </div>
+    </div>
+</form>
