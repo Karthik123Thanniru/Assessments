@@ -2,10 +2,10 @@
 namespace CustomFeedBack\FeedBackModule\Controller\Adminhtml\Post;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-class View extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+class View extends Action
 {
 	protected $resultPageFactory = false;
-
 	public function __construct(
 		Context $context,
 		PageFactory $resultPageFactory

@@ -6,7 +6,9 @@ use Magento\Framework\View\Result\PageFactory;
 use CustomFeedBack\FeedBackModule\Model\FormDataFactory;
 use Magento\Framework\Controller\Result\JsonFactory;
 use CustomFeedBack\FeedBackModule\Model\ResourceModel\FormData;
-class Rejection extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+
+class Rejection extends Action
 {
     protected $resultPageFactory;
     protected $formDataFactory;

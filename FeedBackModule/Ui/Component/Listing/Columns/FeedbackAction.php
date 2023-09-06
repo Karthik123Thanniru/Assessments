@@ -1,10 +1,6 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-namespace CustomFeedBack\FeedBackModule\Ui\Component\Listing\Columns;
 
+namespace CustomFeedBack\FeedBackModule\Ui\Component\Listing\Columns;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
@@ -53,8 +49,6 @@ class FeedbackAction extends Column
             $storeId = $this->context->getFilterParam('feedback_id');
 
             foreach ($dataSource['data']['items'] as &$item) {
-                // var_dump($item);
-                // exit;
                 $item[$this->getData('name')] = [
                     'View' => [
                         'href' => $this->urlBuilder->getUrl(

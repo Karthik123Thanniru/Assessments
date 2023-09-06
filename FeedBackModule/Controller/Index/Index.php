@@ -3,7 +3,9 @@ namespace CustomFeedBack\FeedBackModule\Controller\Index;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Customer\Model\Session;
-class Index extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\Action\Action;
+
+class Index extends Action
 {
     protected $resultPageFactory;
     protected $customerSession;

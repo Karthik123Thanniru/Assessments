@@ -1,13 +1,11 @@
 <?php
  
 namespace CustomFeedBack\FeedBackModule\Helper;
-  
  use Magento\Framework\App\Helper\Context;
  use Magento\Framework\Mail\Template\TransportBuilder;
  use Magento\Framework\App\Helper\AbstractHelper;
  use Magento\Framework\Translate\Inline\StateInterface;
  use Magento\Store\Model\StoreManagerInterface;
-  
  class Mail extends AbstractHelper
  {
      protected $transportBuilder;
@@ -55,7 +53,7 @@ namespace CustomFeedBack\FeedBackModule\Helper;
              $transport->sendMessage();
              $this->inlineTranslation->resume();
          } catch (\Exception $e) {
-             $this->_logger->info($e->getMessage());
+             $this->_logger->error($e->getMessage());
          }
      }
  }

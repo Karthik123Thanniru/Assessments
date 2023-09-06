@@ -1,20 +1,18 @@
 <?php
 namespace CustomFeedBack\FeedBackModule\Model\ResourceModel\FormData;
+use CustomFeedBack\FeedBackModule\Model\FormData as FormData;
+use CustomFeedBack\FeedBackModule\Model\ResourceModel\FormData as ResourceModelFormData;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
-/**
- * Class Collection
- */
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+class Collection extends AbstractCollection
 {
     protected $_idFieldName = 'feedback_id';
-    /**
-     * Init
-     */
-    protected function _construct() // phpcs:ignore PSR2.Methods.MethodDeclaration
+
+    protected function _construct() 
     {
         $this->_init(
-            \CustomFeedBack\FeedBackModule\Model\FormData::class,
-            \CustomFeedBack\FeedBackModule\Model\ResourceModel\FormData::class
+            FormData::class,
+            ResourceModelFormData::class
         );
     }
 }

@@ -3,7 +3,9 @@ namespace CustomFeedBack\FeedBackModule\Controller\Index;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use CustomFeedBack\FeedBackModule\Model\FormDataFactory;
-class Scroller extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\Action\Action;
+
+class Scroller extends Action
 {
     protected $resultPageFactory;
     protected $feedbackFactory;
