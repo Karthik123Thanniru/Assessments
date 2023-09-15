@@ -14,13 +14,13 @@ class FileDataImporter extends Command
     private const PROFILE = 'profile';
 
     protected $dataFactory;
-    
+
     public function __construct(CustomerDataFactory $dataFactory)
     {
         $this->dataFactory = $dataFactory;
-
         parent::__construct();
     }
+
     protected function configure()
     {
         $options = [
@@ -35,7 +35,7 @@ class FileDataImporter extends Command
             ->setDescription('Import customer data')
             ->setDefinition($options)
             ->addArgument('sourcePath', InputArgument::REQUIRED, 'Give source path');
-            parent::configure();
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -47,25 +47,12 @@ class FileDataImporter extends Command
         if ($sourceExtension = pathinfo($source, PATHINFO_EXTENSION)) {
             switch ($sourceExtension) {
                 case 'json':
-                    $jsonContent = file_get_contents($source);
-                    $jsonData = json_decode($jsonContent, true);
-                    if ($jsonData === null) {
-                        $output->writeln("<error>Error parsing JSON file.</error>");
-                        return 1;
-                    }
-                    $output->writeln("<info>Data loaded successfully.</info>");
+                    $jsonData = $this->readJsonData($source, $output);
                     $this->processJsonData($jsonData);
                     return 0;
                     break;
                 case 'csv':
-                    $csvData = array_map('str_getcsv', file($source));
-                    $csvHeaders = array_shift($csvData);
-                    if ($csvData === false) {
-                        $output->writeln("<error>Error reading CSV file.</error>");
-                        return 1;
-                    }
-                    $output->writeln("<info>Data loaded successfully.</info>");
-                    $this->processCsvData($csvData, $csvHeaders);
+                    $this->readCsvData($source, $output);
                     return 0;
                     break;
                 default:
@@ -79,12 +66,39 @@ class FileDataImporter extends Command
         $output->writeln("<info>Data not loaded successfully.</info>");
         return Command::SUCCESS;
     }
+
+    protected function readJsonData($source, OutputInterface $output)
+    {
+        $jsonContent = file_get_contents($source);
+        $jsonData = json_decode($jsonContent, true);
+        if ($jsonData === null) {
+            $output->writeln("<error>Error parsing JSON file.</error>");
+            return 1;
+        }
+        $output->writeln("<info>Data loaded successfully.</info>");
+        return $jsonData;
+    }
+
+    protected function readCsvData($source, OutputInterface $output)
+    {
+        $csvData = array_map('str_getcsv', file($source));
+        $csvHeaders = array_shift($csvData);
+        if ($csvData === false) {
+            $output->writeln("<error>Error reading CSV file.</error>");
+            return 1;
+        }
+        $output->writeln("<info>Data loaded successfully.</info>");
+        $this->processCsvData($csvData, $csvHeaders);
+        return 0;
+    }
+
     protected function processJsonData($jsonData)
     {
         foreach ($jsonData as $data) {
             $this->saveCustomerToDatabase($data);
         }
     }
+
     protected function processCsvData($csvData, $csvHeaders)
     {
         foreach ($csvData as $row) {
@@ -97,6 +111,7 @@ class FileDataImporter extends Command
             $this->saveCustomerToDatabase($data);
         }
     }
+
     protected function saveCustomerToDatabase($data)
     {
         $mappedData = [
