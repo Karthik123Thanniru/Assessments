@@ -1,0 +1,14 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="customer_import" xsi:type="object">CustomCommand\ImportData\Console\Command\FileDataImporter</item>
+            </argument>
+        </arguments>
+    </type>
+        <type name="Magento\Framework\App\ResourceConnection\ConnectionFactory">
+        <arguments>
+            <argument name="dataSourceModel" xsi:type="object">CustomCommand\ImportData\Model\ResourceModel\Connection</argument>
+        </arguments>
+    </type>
+</config>
