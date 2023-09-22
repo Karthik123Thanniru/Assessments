@@ -19,3 +19,4 @@ class Collection extends AbstractCollection
         );
     }
 }
+    

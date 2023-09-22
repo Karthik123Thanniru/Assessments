@@ -9,18 +9,32 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use CustomCommand\ImportData\Model\CustomerDataFactory;
 
+/**
+ * Class FileDataImporter
+ * @package CustomCommand\ImportData\Console\Command
+ */
 class FileDataImporter extends Command
 {
     private const PROFILE = 'profile';
 
+    /**
+     * @var CustomerDataFactory
+     */
     protected $dataFactory;
 
+    /**
+     * FileDataImporter constructor.
+     * @param CustomerDataFactory $dataFactory
+     */
     public function __construct(CustomerDataFactory $dataFactory)
     {
         $this->dataFactory = $dataFactory;
         parent::__construct();
     }
 
+    /**
+     * Configure the command
+     */
     protected function configure()
     {
         $options = [
@@ -38,6 +52,9 @@ class FileDataImporter extends Command
         parent::configure();
     }
 
+    /**
+     * Execute the command
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $source = (string)$input->getArgument('sourcePath');
@@ -67,6 +84,12 @@ class FileDataImporter extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * Read JSON data from a file
+     * @param string $source
+     * @param OutputInterface $output
+     * @return array|int|null
+     */
     protected function readJsonData($source, OutputInterface $output)
     {
         $jsonContent = file_get_contents($source);
@@ -79,6 +102,12 @@ class FileDataImporter extends Command
         return $jsonData;
     }
 
+    /**
+     * Read CSV data from a file
+     * @param string $source
+     * @param OutputInterface $output
+     * @return array|int|null
+     */
     protected function readCsvData($source, OutputInterface $output)
     {
         $csvData = array_map('str_getcsv', file($source));
@@ -92,6 +121,10 @@ class FileDataImporter extends Command
         return 0;
     }
 
+    /**
+     * Process JSON data
+     * @param array $jsonData
+     */
     protected function processJsonData($jsonData)
     {
         foreach ($jsonData as $data) {
@@ -99,6 +132,11 @@ class FileDataImporter extends Command
         }
     }
 
+    /**
+     * Process CSV data
+     * @param array $csvData
+     * @param array $csvHeaders
+     */
     protected function processCsvData($csvData, $csvHeaders)
     {
         foreach ($csvData as $row) {
@@ -112,6 +150,10 @@ class FileDataImporter extends Command
         }
     }
 
+    /**
+     * Save customer data to the database
+     * @param array $data
+     */
     protected function saveCustomerToDatabase($data)
     {
         $mappedData = [
