@@ -6,9 +6,4 @@
             </argument>
         </arguments>
     </type>
-        <type name="Magento\Framework\App\ResourceConnection\ConnectionFactory">
-        <arguments>
-            <argument name="dataSourceModel" xsi:type="object">CustomCommand\ImportData\Model\ResourceModel\Connection</argument>
-        </arguments>
-    </type>
 </config>
