@@ -38,7 +38,6 @@ class FileDataImporter extends Command
             'csv' => $csvProfile,
             'json' => $jsonProfile,
         ];
-
         parent::__construct();
     }
 
