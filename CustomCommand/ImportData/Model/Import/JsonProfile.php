@@ -6,9 +6,8 @@ namespace CustomCommand\ImportData\Model\Import;
 
 use Psr\Log\LoggerInterface;
 use CustomCommand\ImportData\Api\ProfileInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Customer\Model\ResourceModel\Customer as CustomerRepositoryInterface;
-use Magento\Customer\Model\CustomerFactory;
+use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Model\Data\CustomerFactory;
 use Magento\Framework\Serialize\SerializerInterface;
 
 /**
@@ -17,25 +16,6 @@ use Magento\Framework\Serialize\SerializerInterface;
  */
 class JsonProfile implements ProfileInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var CustomerFactory
-     */
-    protected $customerFactory;
-
-    /**
-     * @var CustomerRepositoryInterface
-     */
-    protected $customerRepository;
-
-    /**
-     * @var SerializerInterface
-     */
-    protected $serializer;
 
     /**
      * JsonProfile constructor.
@@ -46,16 +26,11 @@ class JsonProfile implements ProfileInterface
      * @param SerializerInterface         $serializer
      */
     public function __construct(
-        CustomerFactory $customerFactory,
-        CustomerRepositoryInterface $customerRepository,
-        LoggerInterface $logger,
-        SerializerInterface $serializer
-    ) {
-        $this->customerFactory = $customerFactory;
-        $this->customerRepository = $customerRepository;
-        $this->logger = $logger;
-        $this->serializer = $serializer;
-    }
+        protected CustomerFactory $customerFactory,
+        protected CustomerRepositoryInterface $customerRepository,
+        protected LoggerInterface $logger,
+        protected SerializerInterface $serializer
+    ) {}
 
     /**
      * Import data from a source
@@ -65,13 +40,9 @@ class JsonProfile implements ProfileInterface
      */
     public function import($source)
     {
-        try {
-            $jsonData = file_get_contents($source);
-            $data = $this->serializer->unserialize($jsonData);
-            $this->importCustomers($data);
-        } catch (LocalizedException $e) {
-            $this->logger->error($e->getMessage());
-        }
+        $jsonData = file_get_contents($source);
+        $data = $this->serializer->unserialize($jsonData);
+        $this->importCustomers($data);
     }
 
     /**
