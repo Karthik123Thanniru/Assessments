@@ -1,6 +1,4 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- <preference for="CustomCommand\ImportData\Api\ProfileInterface" type="CustomCommand\ImportData\Model\Import\CsvProfile" />
-    <preference for="CustomCommand\ImportData\Api\ProfileInterface" type="CustomCommand\ImportData\Model\Import\JsonProfile" /> -->
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
