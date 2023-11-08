@@ -1,0 +1,19 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="customer_import" xsi:type="object">CustomCommand\ImportData\Console\Command\FileDataImporter</item>
+            </argument>
+        </arguments>
+    </type>
+     <type name="CustomCommand\ImportData\Console\Command\FileDataImporter">
+        <arguments>
+            <argument name="csvProfile" xsi:type="object">
+               CustomCommand\ImportData\Model\Import\CsvProfile
+            </argument>
+            <argument name="jsonProfile" xsi:type="object">
+               CustomCommand\ImportData\Model\Import\JsonProfile
+            </argument>
+        </arguments>
+    </type>
+</config>
